@@ -10,7 +10,7 @@ test('Creates an Engineer object', () => {
 })
 
 test(`gets engineer's github`, () => {
-    const engineer = new Engineer('name', '53662', 'example@email.com', 'myGithub');
+    const engineer = new Engineer('name', '53662', 'example@email.com', 'ZmyGithub');
 
     expect(engineer.getGithub()).toBe(engineer.github);
 })
