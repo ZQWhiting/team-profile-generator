@@ -3,7 +3,54 @@ const Engineer = require('./lib/Engineer')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 
-const questions = [
+let employees = []
+
+const addNew = [{
+    type: 'list',
+    name: 'addNew',
+    message: `Would you like to add a new employee?`,
+    choices: ['Engineer', 'Intern', 'Finish building team']
+}];
+const officeNumberQuestion = [{
+    type: 'input',
+    name: 'officeNumber',
+    message: `What is the employee's office number?`,
+    validate: input => {
+        if (/^[#\w][\w#-]*$/.test(input)) {
+            return true;
+        } else {
+            console.log('Invalid office number. Office number can only contain letters, numbers, and special characters "#-_"');
+            return false;
+        }
+    }
+}];
+const githubQuestion = [{
+    type: 'input',
+    name: 'github',
+    message: `What is the employee's github?`,
+    validate: input => {
+        if (/^[\w](?:[\w]|-(?=[\w])){0,38}$/.test(input)) {
+            return true;
+        } else {
+            console.log('GitHub username not valid. Use valid GitHub username format');
+            return false;
+        }
+    }
+}];
+const schoolQuestion = [{
+    type: 'input',
+    name: 'school',
+    message: `What is the employee's school?`,
+    validate: input => {
+        if (/[A-Za-z\s]+$/.test(input)) {
+            return true;
+        } else {
+            console.log('Invalid school name. School can only contain letters and whitespaces.')
+            return false;
+        }
+    }
+}];
+const defaultInfoQuestions = [
     {
         type: 'input',
         name: 'name',
@@ -43,70 +90,51 @@ const questions = [
             }
         }
     },
-    {
-        type: 'list',
-        name: 'role',
-        message: `What is the employee's role?`,
-        choices: ['Manager', 'Engineer', 'Intern']
-    },
-    {
-        type: 'input',
-        name: 'officeNumber',
-        message: `What is the employee's office number?`,
-        when: ({ role }) => role === 'Manager',
-        validate: input => {
-            if (/^[#\w][\w#-]*$/.test(input)) {
-                return true;
-            } else {
-                console.log('Invalid office number. Office number can only contain letters, numbers, and special characters "#-_"');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'github',
-        message: `What is the employee's github?`,
-        when: ({ role }) => role === 'Engineer',
-        validate: input => {
-            if (/^[\w](?:[\w]|-(?=[\w])){0,38}$/.test(input)) {
-                return true;
-            } else {
-                console.log('GitHub username not valid. Use valid GitHub username format');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'school',
-        message: `What is the employee's school?`,
-        when: ({ role }) => role === 'Intern',
-        validate: input => {
-            if (/[A-Za-z\s]+$/.test(input)) {
-                return true;
-            } else {
-                console.log('Invalid school name. School can only contain letters and whitespaces.')
-                return false;
-            }
-        }
-    },
 ]
 
-function promptEmployeeInfo() {
+function startApp() {
+    employees = []
+    createEmployee(officeNumberQuestion, 'manager', Manager)
+}
+
+function createEmployee(roleQuestion, role, roleConstructor) {
+    console.log(`Enter your ${role}'s info`)
+
+    let question = defaultInfoQuestions.concat(roleQuestion)
+
     inquirer
-        .prompt(questions)
-        .then(answers => {
-            const { name, id, email, role, officeNumber, github, school } = answers;
-            switch (role) {
-                case "Manager":
-                    return new Manager(name, id, email, officeNumber);
-                case "Engineer":
-                    return new Engineer(name, id, email, github);
-                case "Intern":
-                    return new Intern(name, id, email, school);
+        .prompt(question)
+        .then(answer => {
+            const { name, id, email, ...rest } = answer;
+            const [ varAnswer ] = Object.values(rest)
+
+            employees.push(new roleConstructor(name, id, email, varAnswer))
+
+            addEmployee()
+        })
+}
+
+function addEmployee() {
+    inquirer.prompt(addNew)
+        .then(answer => {
+            const { addNew } = answer;
+            switch (addNew) {
+                case 'Engineer':
+                    createEmployee(githubQuestion, 'engineer', Engineer)
+                    break;
+                case 'Intern':
+                    createEmployee(schoolQuestion, 'intern', Intern)
+                    break;
+                case 'Finish building team':
+                    finishBuild();
+                    break;
             }
         })
 }
 
-promptEmployeeInfo()
+function finishBuild() {
+    console.log(employees);
+    // construct website
+}
+
+startApp()
