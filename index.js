@@ -1,11 +1,12 @@
 const Team = require('./lib/Team')
 
-const team = new Team();
-
-(async () => {
+async function runProgram() {
+    const team = new Team();
     await team.buildTeam(team);
     console.log(team);
-
     // rest of code goes here.
 
-})();
+
+}
+
+runProgram();
