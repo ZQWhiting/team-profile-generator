@@ -3,14 +3,19 @@ const { faMugHot, faGlasses, faGraduationCap } = require('@fortawesome/free-soli
 
 library.add(faMugHot, faGlasses, faGraduationCap)
 
-
-
-
 function buildEmployeeCards(team) {
 
     let teamHtml = ``
 
     team.forEach(employee => {
+
+        employee.name = employee.name
+            .split(' ')
+            .map(name => {
+                return name.charAt(0).toUpperCase() + name.slice(1);
+            })
+            .join(' ');
+
         let varKey = Object.keys(employee)[4];
         varKey = varKey.charAt(0).toUpperCase() + varKey.slice(1);
         if (varKey === 'OfficeNumber') {
