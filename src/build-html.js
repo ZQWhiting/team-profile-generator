@@ -21,7 +21,7 @@ function buildEmployeeCards(team) {
 
         teamHtml += `
             <div class="col my-2">
-                <div class="card shadow">
+                <div class="card h-100 shadow">
                     <h2 class="card-header text-white">${employee.name}<p class='h3'>${getIcon(employee.role)}${employee.role}</p></h2>
                     <div class="card-body">
                         <div class="list-group">

@@ -1,5 +1,6 @@
 const Team = require('./lib/Team')
 const buildHtml = require('./src/build-html')
+const writeFile = require('./src/write-file')
 
 
 async function runProgram() {
@@ -8,6 +9,9 @@ async function runProgram() {
 
     let html = buildHtml(team);
 
+    writeFileResponse = await writeFile(html);
+
+    console.log(writeFileResponse.message);
 }
 
 runProgram();
