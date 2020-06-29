@@ -1,0 +1,15 @@
+header {
+    background-color: teal;
+}
+
+body {
+    background-color: rgb(255, 248, 220);
+}
+
+.card-header {
+    background-color: cadetblue
+}
+
+.card-body {
+    background-color: rgba(255, 248, 220, 0.4);
+}
