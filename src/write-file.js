@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// function to write README file
+// function to write HTML file
 function writeFile(html) {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/HTML.html', html, err => {

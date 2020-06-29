@@ -4,34 +4,39 @@ const { faMugHot, faGlasses, faGraduationCap } = require('@fortawesome/free-soli
 library.add(faMugHot, faGlasses, faGraduationCap)
 
 function buildEmployeeCards(team) {
-
+    // html to return
     let teamHtml = ``
 
     team.forEach(employee => {
+        let {name, id, email, role} = employee;
 
-        employee.name = employee.name
+        // capitalize employee names
+        name = name
             .split(' ')
             .map(name => {
                 return name.charAt(0).toUpperCase() + name.slice(1);
             })
             .join(' ');
 
+        // Role specific value
+        // Capitalize value
+        // Separate into two words
         let varKey = Object.keys(employee)[4];
         varKey = varKey.charAt(0).toUpperCase() + varKey.slice(1);
-        if (varKey === 'OfficeNumber') {
-            varKey = varKey.split("N").join(" N");
-        }
+        if (varKey === 'OfficeNumber') varKey = varKey.split("N").join(" N");
 
+        // Role specific value
         let varValue = Object.values(employee)[4];
 
+        // set value for html to return
         teamHtml += `
             <div class="col my-2">
                 <div class="card h-100 shadow">
-                    <h2 class="card-header text-white">${employee.name}<p class='h3'>${getIcon(employee.role)}${employee.role}</p></h2>
+                    <h2 class="card-header text-white">${name}<p class='h3'>${getIcon(role)}${role}</p></h2>
                     <div class="card-body">
                         <div class="list-group">
-                            <div class="list-group-item">ID: ${employee.id}</div>
-                            <div class="list-group-item">Email: ${employee.email}</div>
+                            <div class="list-group-item">ID: ${id}</div>
+                            <div class="list-group-item">Email: ${email}</div>
                             <div class="list-group-item">${varKey}: ${varValue}</div>
                         </div>
                     </div>
@@ -40,6 +45,7 @@ function buildEmployeeCards(team) {
         `
     });
 
+    // return html
     return teamHtml
 }
 
