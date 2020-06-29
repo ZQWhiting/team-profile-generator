@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/ZQWhiting/team-profile-generator#readme",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "inquirer": "^7.2.0"
   },
   "devDependencies": {
