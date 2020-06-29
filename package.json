@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/ZQWhiting/team-profile-generator#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "bootstrap": "^4.5.0",
     "inquirer": "^7.2.0"
   },

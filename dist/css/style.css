@@ -1,15 +1,34 @@
 header {
-    background-color: teal;
+    background: teal;
+    border-bottom: 8px solid;
+    border-image: linear-gradient(to right,teal -20%, whitesmoke 50%, teal 120%) 1 100%;
+    border-image-slice: 10;
 }
 
 body {
-    background-color: rgb(255, 248, 220);
+    background-color: darkslategray;
+}
+
+.card {
+    border: 1px solid cadetblue;
+    border-radius: 1.25rem 1.25rem 0 0;
 }
 
 .card-header {
-    background-color: cadetblue
+    background-color: cadetblue;
+    border-radius: 1.25rem 8rem 0 0 !important;
 }
 
+.card-header svg {
+    width: 1.2em;
+    margin-right: 0.2em;
+}
+
+.card-header p {
+    margin-top: 0.3em;
+    display: flex;
+    align-items: flex-end;
+}
 .card-body {
-    background-color: rgba(255, 248, 220, 0.4);
+    background-color: whitesmoke;
 }

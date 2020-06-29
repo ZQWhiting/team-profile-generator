@@ -1,11 +1,12 @@
 const Team = require('./lib/Team')
+const buildHtml = require('./src/build-html')
+
 
 async function runProgram() {
     const team = new Team();
     await team.buildTeam(team);
-    console.log(team);
-    // rest of code goes here.
 
+    let html = buildHtml(team);
 
 }
 
