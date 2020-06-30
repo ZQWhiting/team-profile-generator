@@ -41,7 +41,7 @@ function buildEmployeeCards(team) {
 
 function getEmail(email) {
     // html to return
-    return `<a href='${email}'>${email}</a>`
+    return `<a href='mailto:${email}'>${email}</a>`
 }
 
 function getVar(employee) {
