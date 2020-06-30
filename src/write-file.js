@@ -3,7 +3,7 @@ const fs = require('fs');
 // function to write HTML file
 function writeFile(html) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/HTML.html', html, err => {
+        fs.writeFile(getPath(), html, err => {
             if (err) {
                 reject(err);
                 return;
@@ -15,6 +15,20 @@ function writeFile(html) {
             });
         });
     });
+}
+
+// Get unique file path.
+function getPath() {
+    let i = 1
+    let repeat = true;
+    while (repeat) {
+        if (fs.existsSync(`./dist/Team-${i}.html`)) {
+            i++
+        }
+        else {
+            return `./dist/Team-${i}.html`
+        }
+    }
 }
 
 module.exports = writeFile;
