@@ -11,12 +11,7 @@ function buildEmployeeCards(team) {
         let { name, id, email, role } = employee;
 
         // capitalize employee names
-        name = name
-            .split(' ')
-            .map(name => {
-                return name.charAt(0).toUpperCase() + name.slice(1);
-            })
-            .join(' ');
+        name = capitalizeName(name);
 
         // set value for html to return
         teamHtml += `
@@ -43,6 +38,16 @@ function buildEmployeeCards(team) {
 
     // return html
     return teamHtml
+}
+
+function capitalizeName(name) {
+    name = name
+        .split(' ')
+        .map(name => {
+            return name.charAt(0).toUpperCase() + name.slice(1);
+        })
+        .join(' ');
+    return name;
 }
 
 function getEmail(email) {
@@ -79,7 +84,7 @@ function getIcon(role) {
     }
 }
 
-module.exports = function buildHtml(team) {
+function buildHtml(team) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -102,3 +107,5 @@ module.exports = function buildHtml(team) {
     </body>
     </html>`
 }
+
+module.exports = buildHtml;
