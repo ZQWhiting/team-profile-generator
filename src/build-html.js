@@ -8,7 +8,7 @@ function buildEmployeeCards(team) {
     let teamHtml = ``
 
     team.forEach(employee => {
-        let {name, id, email, role} = employee;
+        let { name, id, email, role } = employee;
 
         // capitalize employee names
         name = name
@@ -18,16 +18,6 @@ function buildEmployeeCards(team) {
             })
             .join(' ');
 
-        // Role specific value
-        // Capitalize value
-        // Separate into two words
-        let varKey = Object.keys(employee)[4];
-        varKey = varKey.charAt(0).toUpperCase() + varKey.slice(1);
-        if (varKey === 'OfficeNumber') varKey = varKey.split("N").join(" N");
-
-        // Role specific value
-        let varValue = Object.values(employee)[4];
-
         // set value for html to return
         teamHtml += `
             <div class="col my-2">
@@ -36,8 +26,8 @@ function buildEmployeeCards(team) {
                     <div class="card-body">
                         <div class="list-group">
                             <div class="list-group-item">ID: ${id}</div>
-                            <div class="list-group-item">Email: ${email}</div>
-                            <div class="list-group-item">${varKey}: ${varValue}</div>
+                            <div class="list-group-item">Email: ${getEmail(email)}</div>
+                            <div class="list-group-item"> ${getVar(employee)}</div>
                         </div>
                     </div>
                 </div>
@@ -47,6 +37,29 @@ function buildEmployeeCards(team) {
 
     // return html
     return teamHtml
+}
+
+function getEmail(email) {
+    // html to return
+    return `<a href='${email}'>${email}</a>`
+}
+
+function getVar(employee) {
+    // Role specific value
+    // Capitalize value
+    // Separate into two words
+    let varKey = Object.keys(employee)[4];
+    varKey = varKey.charAt(0).toUpperCase() + varKey.slice(1);
+    if (varKey === 'OfficeNumber') varKey = varKey.split("N").join(" N");
+
+    // Role specific value
+    let varValue = Object.values(employee)[4];
+
+    // html to return
+    if (varKey === 'Github') {
+        return `${varKey}: <a href='https://github.com/${varValue}' target='_blank'>${varValue}</a>`
+    }
+    return `${ varKey }: ${ varValue }`
 }
 
 function getIcon(role) {

@@ -11,7 +11,7 @@ function writeFile(html) {
 
             resolve({
                 ok: true,
-                message: 'HTML successfully created! Find your copy along with the stylesheets in the /dist folder'
+                message: 'HTML successfully created! Find your copy along with your stylesheets in the /dist folder'
             });
         });
     });
