@@ -45,8 +45,8 @@ function getEmail(email) {
 }
 
 function getVar(employee) {
-    // Role specific value
-    // Capitalize value
+    // Role specific key
+    // Capitalize key
     // Separate into two words
     let varKey = Object.keys(employee)[4];
     varKey = varKey.charAt(0).toUpperCase() + varKey.slice(1);
