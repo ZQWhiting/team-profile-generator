@@ -18,7 +18,7 @@ A Node.js command-line application that takes in information about employees on 
 <a name='installation'></a>
 ## Installation
 * Install [node.js](https://nodejs.org) if not installed.
- * Clone the [repository](https://github.com/ZQWhiting/readme-generator/).
+ * Clone the [repository](https://github.com/ZQWhiting/team-profile-generator/).
  * In the terminal, navigate to the repository and enter `npm install` to install required third-party npms.
  * Run the `index.js` file in [node.js](https://nodejs.org) by entering `node index` in the terminal.
 
