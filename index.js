@@ -12,7 +12,6 @@ async function runProgram() {
     writeFileResponse = await writeFile(html);
 
     console.log(writeFileResponse.message);
-    console.log(team)
 }
 
 runProgram();
