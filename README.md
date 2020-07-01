@@ -34,6 +34,8 @@ A Node.js command-line application that takes in information about employees on 
 * Multiple runs of the program will create separate HTML files.
 * The CSS files are static, so if you wish to move your files elsewear, be sure to leave a copy of them in the `/dist` folder!
 
+[Walkthrough Video](https://youtu.be/8GlgiLWDiTU)
+
 <a name='license'></a>
 ## License
 Licensed under the [ISC](./LICENSE.txt) license.
